@@ -8,13 +8,26 @@
 
 void l1_normalize(image im)
 {
-    // TODO
+    for (int k = 0; k < im.c; ++k)
+    {
+        float sum = 0;
+        for (int j = 0; j < im.h; ++j)
+            for (int i = 0; i < im.w; ++i)
+                sum += get_pixel(im, i, j, k);
+
+        for (int j = 0; j < im.h; ++j)
+            for (int i = 0; i < im.w; ++i)
+                set_pixel(im, i, j, k, get_pixel(im, i, j, k)/sum);
+    }
 }
 
 image make_box_filter(int w)
 {
-    // TODO
-    return make_image(1,1,1);
+    image filter = make_image(w,w,1);
+    for (int j = 0; j < w; ++j)
+        for (int i = 0; i < w; ++i)
+            set_pixel(filter, i, j, 0, 1.0f/(w*w));
+    return filter;
 }
 
 image convolve_image(image im, image filter, int preserve)
