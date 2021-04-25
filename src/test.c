@@ -333,6 +333,10 @@ void test_sobel(){
         }
     }
 
+    image color_sobel = colorize_sobel(im);
+    save_image(color_sobel, "figs/myoutput/color_sobel.jpg");
+    free_image(color_sobel);
+
     TEST(same_image(mag, gt_mag));
     TEST(same_image(theta, gt_theta));
     free_image(im);

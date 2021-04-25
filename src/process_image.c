@@ -61,7 +61,7 @@ void clamp_image(image im)
     {
         if (im.data[i] < 0.f)
             im.data[i] = 0.f;
-        else if (im.data[i] > 0.f)
+        else if (im.data[i] > 1.f)
             im.data[i] = 1.f;
     }
 }
